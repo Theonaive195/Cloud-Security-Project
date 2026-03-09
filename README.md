@@ -219,4 +219,3 @@ hardened kernel parameters, applied CIS remediation steps.
 *Code Academy — Final Cybersecurity Project*
 *Cloud Security Infrastructure on AWS • calaris.online*
 ```
-
