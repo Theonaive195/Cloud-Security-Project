@@ -220,8 +220,3 @@ hardened kernel parameters, applied CIS remediation steps.
 *Cloud Security Infrastructure on AWS • calaris.online*
 ```
 
----
-
-Commit message:
-```
-Add Cloud Security Project README
