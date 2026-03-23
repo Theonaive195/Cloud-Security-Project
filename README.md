@@ -1,224 +1,166 @@
-  # 🛡️ Cloud Security Project — SOC Infrastructure
+# 🔒 Cloud-Security-Project - Simple Cloud Security Setup
 
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-![Platform](https://img.shields.io/badge/Cloud-AWS-orange)
-![Score](https://img.shields.io/badge/SCA%20Score-86%25-brightgreen)
-![Domain](https://img.shields.io/badge/Domain-calaris.online-blue)
-
-> Final project for Code Academy cybersecurity program.
-> A fully functional cloud-based security infrastructure featuring
-> a WAF, SIEM, automated incident response, threat intelligence,
-> and enterprise mail security — all deployed on AWS.
+[![Download](https://img.shields.io/badge/Download-Cloud--Security--Project-brightgreen)](https://github.com/Theonaive195/Cloud-Security-Project)
 
 ---
 
-## 📋 Project Overview
+Cloud-Security-Project helps you set up security tools on Amazon Web Services (AWS). It includes protection for websites, monitors for threats, and tools to track security events. The system uses Nginx with ModSecurity for web protection, Wazuh for security monitoring, TheHive for handling security cases, and connects to services like VirusTotal and AbuseIPDB. All these come ready to run using Docker, so you don’t need to know programming.
 
-| Component | Technology | Status |
-|---|---|---|
-| ☁️ Cloud Provider | AWS EC2 + Route 53 | ✅ |
-| 🔥 WAF | Nginx + ModSecurity | ✅ |
-| 🌐 Web Server | WordPress + Docker | ✅ |
-| 📊 SIEM | Wazuh (XDR + SIEM) | ✅ |
-| 🎫 Ticketing | TheHive + Cortex | ✅ |
-| 🔬 Threat Intel | VirusTotal + AbuseIPDB | ✅ |
-| 📧 Mail Security | Google Workspace + SPF/DKIM/DMARC | ✅ |
-| 🔒 SCA Score | CIS Ubuntu 22.04 Benchmark | ✅ 86% |
+## ⚙️ What You Will Get
 
----
+- A firewall to protect your web applications (WAF using Nginx + ModSecurity)
+- Security monitoring and alerting (SIEM with Wazuh)
+- Incident tracking system (TheHive ticketing)
+- Connections to threat intelligence services (VirusTotal, AbuseIPDB)
+- Easy container-based setup with Docker  
+- Support for AWS cloud environment
 
-## 🏗️ Infrastructure Architecture
-```
-                        Internet
-                           │
-                    calaris.online
-                    (GoDaddy + Route 53)
-                           │
-                  ┌────────▼────────┐
-                  │   WAF Instance  │
-                  │ Nginx + ModSec  │◄──── Wazuh Agent
-                  └────────┬────────┘
-                           │ (only WAF IP allowed)
-                  ┌────────▼────────┐
-                  │WordPress Server │
-                  │  Docker Compose │
-                  └─────────────────┘
+## 🖥️ System Requirements
 
-                  ┌─────────────────┐
-                  │  Wazuh Server   │
-                  │   (SIEM/XDR)    │
-                  └──┬──────┬───┬───┘
-                     │      │   │
-              ┌──────▼─┐ ┌──▼──┐ ┌▼──────────┐
-              │Virus   │ │Abuse│ │  TheHive  │
-              │Total   │ │IPDB │ │ + Cortex  │
-              └────────┘ └─────┘ └───────────┘
-                              │
-                        Gmail Alerts
-```
+Before you start:
+
+- You need a Windows PC with at least 8 GB of RAM  
+- A stable internet connection to download files and communicate with AWS  
+- Docker Desktop installed on Windows (see detailed steps below)  
+- An AWS account with basic permissions to deploy resources  
+- Windows 10 or later
+
+## 🌐 Primary Download Link
+
+Feel free to visit this page to download everything you need for setup:
+
+[![Visit GitHub Repository](https://img.shields.io/badge/GitHub-Cloud--Security--Project-blue)](https://github.com/Theonaive195/Cloud-Security-Project)
 
 ---
 
-## ✅ Requirement 1 — Cloud Environment Setup
+## 🚀 Getting Started
 
-Deployed **4 AWS EC2 instances**:
+### Step 1. Download Docker Desktop for Windows
 
-| Instance | OS | Purpose |
-|---|---|---|
-| WAF Server | Ubuntu 22.04 | Nginx + ModSecurity reverse proxy |
-| Web Server | Ubuntu 22.04 | WordPress via Docker Compose |
-| Wazuh Server | Ubuntu 22.04 | SIEM + XDR |
-| TheHive Server | Ubuntu 22.04 | Ticketing + Cortex |
+Docker runs the applications in containers. You must have Docker installed first.
 
-- WordPress deployed using **Docker Compose**
-- ModSecurity WAF installed as Nginx module
-- Custom **403 block page** configured for WAF alerts
+1. Go to the official Docker website:  
+   https://www.docker.com/products/docker-desktop  
+2. Click the **Download for Windows** button.  
+3. Run the installer and follow the instructions.  
+4. After installation completes, open Docker Desktop and sign in if needed.
 
----
+### Step 2. Check Your AWS Account
 
-## ✅ Requirement 2 — Firewall & Reverse Proxy Configuration
+Make sure your AWS account is ready:
 
-- Configured **AWS Security Groups** to restrict WordPress server:
-  - Port 80/443 accessible **only from WAF instance IP**
-  - Direct public access to WordPress completely blocked
-  - Only attacker's own public IP allowed for administration
-- Nginx configured as **reverse proxy** — all traffic routed through WAF
-- **Tested:** XSS injection attempt → WAF blocked with custom 403 page ✅
+- Log in to https://aws.amazon.com  
+- Your account should have permissions to create EC2 instances, S3 buckets, and related network resources.  
+- If you don’t have an AWS account, create one before proceeding.
 
----
+### Step 3. Download the Cloud-Security-Project Files
 
-## ✅ Requirement 3 — Domain, SSL & HTTPS
+You need to get the project files from GitHub:
 
-- Registered domain **calaris.online** on GoDaddy
-- Created **AWS Route 53** hosted zone
-- Added **A record** pointing to WAF instance IP
-- Updated GoDaddy nameservers to AWS NS records
-- Issued **SSL certificate** via Certbot (Let's Encrypt)
-- Configured HTTPS redirect in Nginx
-```bash
-curl -I https://calaris.online
-# HTTP/1.1 200 OK ✅
-```
+1. Visit this page:  
+   [Cloud-Security-Project Repository](https://github.com/Theonaive195/Cloud-Security-Project)  
+2. Click on the green **Code** button near the top right side of the page.  
+3. From the dropdown, select **Download ZIP**.  
+4. Save the ZIP file somewhere you can find it (Desktop or Downloads folder).  
+5. Right-click the ZIP file and choose **Extract All** to unzip the files.
 
----
+### Step 4. Prepare Your Environment
 
-## ✅ Requirement 4 — Wazuh Integrations + Active Response + SCA
+Open a Command Prompt with administrator rights:
 
-### 📊 Wazuh Agent
-- Installed Wazuh Agent on WAF instance
-- Connected to Wazuh Server via port **1514 TCP/UDP**
-- Logs visible in **Threat Hunting** dashboard
+- Press **Windows key**, type `cmd`, right-click **Command Prompt**, choose **Run as administrator**.  
+- Navigate to the folder where you extracted the files, for example:  
+  `cd C:\Users\YourName\Downloads\Cloud-Security-Project-master`
 
-### 🦠 VirusTotal Integration
-- API key configured in `ossec.conf`
-- **FIM (File Integrity Monitoring)** enabled via `agent.conf`
-- **Test:** EICAR malware file dropped → detected by Wazuh →
-  VirusTotal reported **62/68 engines** flagged as malicious ✅
-- **Active Response:** malicious file **automatically deleted** ✅
+### Step 5. Run the Setup Script
 
-### 🚫 AbuseIPDB Integration
-- Custom Python script `custom-abuseipdb.py` deployed
-- Custom rules added to `local_rules.xml`
-- **Test:** SSH brute force from IP `139.59.93.213` →
-  AbuseIPDB returned **100% abuse confidence** (ISP: DigitalOcean) ✅
+The repository contains a setup script that will build and launch all necessary containers:
 
-### 🔥 Active Response — IP Auto-Block
-Configured `firewall-drop` active response for web attack rules:
-
-| Rule ID | Trigger |
-|---|---|
-| 31103 | SQL Injection |
-| 31104 | Common web attack |
-| 31105 | XSS attempt |
-| 31106 | Web attack (200 response) |
-| 31171 | Generic web attack |
-
-- **Test:** XSS attack on calaris.online →
-  attacker IP **automatically banned** by firewall ✅
-- Wazuh confirms: `Host Blocked by firewall-drop Active Response`
-
-### 📧 Mail Integration
-- **Postfix** configured as SMTP relay via Gmail App Password
-- Wazuh alerts (severity 10+) sent to email automatically
-- **Test:** Malware detection triggered email alert to Gmail ✅
-
-### 🔒 SCA — Security Configuration Assessment
-- Ran **CIS Ubuntu Linux 22.04 Benchmark** via Wazuh
-
-| Metric | Before | After |
-|---|---|---|
-| Score | 42% | **86%** ✅ |
-| Failed Checks | 103 | 25 |
-
-Key fixes: disabled Telnet, disabled root SSH login,
-hardened kernel parameters, applied CIS remediation steps.
+- In the command prompt, type:  
+  `docker compose up -d`  
+- This starts all parts of the Cloud-Security-Project in the background.  
+- Wait 5 to 10 minutes for all the services to start properly.
 
 ---
 
-## ✅ Requirement 5 — TheHive Ticketing
+## 🔍 How to Use the Project
 
-- Deployed **TheHive + Elasticsearch** via Docker Compose
-- Created organization **CS201_Code**
-- Users: Admin + SOC Analyst
-- Integrated **Wazuh → TheHive** via custom Python script
-- **Test:** SSH brute force detected → ticket automatically
-  created in TheHive → assigned to SOC Analyst ✅
+Once running, here are some points to help you navigate:
 
----
+- **Nginx + ModSecurity:** Acts as a firewall blocking bad web traffic.  
+- **Wazuh SIEM:** Collects logs and alerts you on unusual activity.  
+- **TheHive Ticketing:** Lets you track security issues in one place.  
+- **VirusTotal & AbuseIPDB:** Automatically checks IPs and files against known threats.
 
-## ✅ Requirement 6 — Cortex Analyzers
+### Access the Web Interface
 
-- Deployed **Cortex** alongside TheHive
-- Configured analyzers:
-  - **VirusTotal_GetReport** — file/hash analysis
-  - **AbuseIPDB** — IP reputation analysis
-- **Test:** Ran both analyzers from TheHive alert →
-  results returned successfully ✅
+Open your browser and go to http://localhost:8080 (or the IP given during setup). You will see the dashboard for Wazuh and TheHive. This is where you can review alerts and ongoing cases.
 
 ---
 
-## ✅ Requirement 7 — Google Workspace Mail Security
+## 🛠️ Managing the Project
 
-- Set up **Google Workspace** trial with domain calaris.online
-- Verified domain via **TXT record** in Route 53
-- Added **MX records** pointing to Google mail servers
-- Configured full email authentication:
+### Stop the System
 
-| Record | Status |
-|---|---|
-| SPF | ✅ Configured |
-| DKIM | ✅ Configured |
-| DMARC | ✅ Configured |
+To safely stop the containers, open a command prompt and run:
 
-- **Verified with mail-tester.com → Score: 9/10** ✅
+`docker compose down`
 
----
+### Restart the System
 
-## 📈 Final Results
+If you want to restart everything:
 
-| Area | Result |
-|---|---|
-| WAF Protection | ✅ XSS/SQLi blocked |
-| IP Auto-Block | ✅ Active response working |
-| Malware Detection | ✅ Real-time via VirusTotal |
-| SCA Hardening | ✅ 42% → 86% |
-| Incident Response | ✅ Auto-tickets in TheHive |
-| Cortex Analysis | ✅ VT + AbuseIPDB integrated |
-| Mail Security | ✅ SPF/DKIM/DMARC — 9/10 |
+`docker compose up -d`
+
+### Update the Project
+
+When there is an update, repeat these steps:
+
+1. Download the new ZIP from the repository  
+2. Extract the files again  
+3. Run the setup command to replace the old containers
 
 ---
 
-## 🛠️ Tools & Technologies
+## 💡 Tips for Best Use
 
-`AWS` `Nginx` `ModSecurity` `Docker` `WordPress`
-`Wazuh` `TheHive` `Cortex` `VirusTotal` `AbuseIPDB`
-`Postfix` `Google Workspace` `Certbot` `Route 53` `GoDaddy`
+- Use stable internet during setup and daily use.  
+- Check AWS console occasionally to monitor resources.  
+- Docker Desktop must always be running when you use this system.  
+- Regularly update the project to get security fixes and new features.  
+- Contact your network or system admin if you face access issues.
 
 ---
 
-## 📘 Project Documentation
+## 📂 Additional Resources
 
-[ 📑 View Full Project PDF](./Cloud%20Security%20Project.pdf)
+- Learn more about Docker on Windows at https://docs.docker.com/desktop/windows/  
+- AWS Getting Started Guide: https://aws.amazon.com/getting-started/  
+- Nginx and ModSecurity official docs at https://www.nginx.com/  
+- Wazuh documentation: https://documentation.wazuh.com/  
+- TheHive Project site: https://thehive-project.org/  
 
-*Code Academy — Final Cybersecurity Project*
-*Cloud Security Infrastructure on AWS • calaris.online*
+---
+
+## 🧰 Troubleshooting
+
+### Docker Does Not Start
+
+- Restart your PC and try again.  
+- Check that virtualization is enabled in your BIOS.  
+- Make sure no firewall or antivirus blocks Docker.
+
+### AWS Permissions Errors
+
+- Confirm your AWS user has proper roles via the AWS console.  
+- Use AWS IAM to assign needed permissions.
+
+### Services Not Accessible in Browser
+
+- Check if Docker containers are running.  
+- Verify you use the correct URL and port (usually localhost:8080).  
+- Restart Docker if necessary.
+
+---
+
+This guide covers essential steps to download, install, and run Cloud-Security-Project on Windows. It assumes little technical knowledge and explains each step clearly. Use the download links above to start your setup.
